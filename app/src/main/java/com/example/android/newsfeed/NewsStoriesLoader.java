@@ -5,7 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
 
-import java.util.ArrayList;
+import com.example.android.newsfeed.utils.NetworkUtils;
+
 import java.util.List;
 
 public class NewsStoriesLoader extends AsyncTaskLoader<List<NewsStory>> {
@@ -16,7 +17,7 @@ public class NewsStoriesLoader extends AsyncTaskLoader<List<NewsStory>> {
     @Nullable
     @Override
     public List<NewsStory> loadInBackground() {
-        List<NewsStory> newsStories = new ArrayList<>();
+        List<NewsStory> newsStories = NetworkUtils.fetchNewsStories("https://newsapi.org/v2/everything?q=apple&sortBy=popularity&apiKey=44b9751fc1544ae3907399f66279543d");
         return newsStories;
     }
 

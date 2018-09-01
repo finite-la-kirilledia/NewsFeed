@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         mListView = findViewById(R.id.list);
         mAdapter = new NewsStoryAdapter(this, new ArrayList<NewsStory>());
         mListView.setAdapter(mAdapter);
+
+        getSupportLoaderManager().initLoader(1, null, this);
     }
 
     @NonNull
