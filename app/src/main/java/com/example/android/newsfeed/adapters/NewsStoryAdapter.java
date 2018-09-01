@@ -1,4 +1,4 @@
-package com.example.android.newsfeed;
+package com.example.android.newsfeed.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.android.newsfeed.NewsStory;
+import com.example.android.newsfeed.R;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;

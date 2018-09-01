@@ -10,14 +10,17 @@ import com.example.android.newsfeed.utils.NetworkUtils;
 import java.util.List;
 
 public class NewsStoriesLoader extends AsyncTaskLoader<List<NewsStory>> {
-    public NewsStoriesLoader(@NonNull Context context) {
+    private String mUrl;
+
+    public NewsStoriesLoader(@NonNull Context context, String url) {
         super(context);
+        mUrl = url;
     }
 
     @Nullable
     @Override
     public List<NewsStory> loadInBackground() {
-        List<NewsStory> newsStories = NetworkUtils.fetchNewsStories("https://newsapi.org/v2/everything?q=apple&sortBy=popularity&apiKey=44b9751fc1544ae3907399f66279543d");
+        List<NewsStory> newsStories = NetworkUtils.fetchNewsStories(mUrl);
         return newsStories;
     }
 
