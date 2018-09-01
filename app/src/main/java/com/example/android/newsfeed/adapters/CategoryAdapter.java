@@ -1,11 +1,14 @@
 package com.example.android.newsfeed.adapters;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.android.newsfeed.CategoryFragment;
+import com.example.android.newsfeed.R;
 
 public class CategoryAdapter extends FragmentPagerAdapter {
     private static final String BUSINESS_CATEGORY_URL = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=44b9751fc1544ae3907399f66279543d";
@@ -20,8 +23,11 @@ public class CategoryAdapter extends FragmentPagerAdapter {
     private static final int APPLE_CATEGORY_LOADER_ID = 400;
     private static final int WS_JOURNAL_CATEGORY_LOADER_ID = 500;
 
-    public CategoryAdapter(FragmentManager fm) {
+    private Context mContext;
+
+    public CategoryAdapter(Context context, FragmentManager fm) {
         super(fm);
+        mContext = context;
     }
 
     @Override
@@ -56,5 +62,24 @@ public class CategoryAdapter extends FragmentPagerAdapter {
         fragment.setArguments(bundle);
 
         return fragment;
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
+            case 0:
+                return mContext.getResources().getString(R.string.ws_journal);
+            case 1:
+                return mContext.getResources().getString(R.string.business);
+            case 2:
+                return mContext.getResources().getString(R.string.apple);
+            case 3:
+                return mContext.getResources().getString(R.string.bitcoin);
+            case 4:
+                return mContext.getResources().getString(R.string.techcrunch);
+            default:
+                return null;
+        }
     }
 }
