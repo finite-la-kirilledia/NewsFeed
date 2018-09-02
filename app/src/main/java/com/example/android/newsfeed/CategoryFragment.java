@@ -1,6 +1,9 @@
 package com.example.android.newsfeed;
 
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -48,8 +51,16 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
         // find loading indicator in the layout
         mLoadingIndicator = parentView.findViewById(R.id.loading_indicator);
 
-        getActivity().getSupportLoaderManager().initLoader(
-                CategoryFragment.this.getArguments().getInt("id"), null, CategoryFragment.this);
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            getActivity().getSupportLoaderManager().initLoader(
+                    CategoryFragment.this.getArguments().getInt("id"), null, CategoryFragment.this);
+        } else {
+            mLoadingIndicator.setVisibility(View.GONE);
+            mEmptyStateTextView.setText(R.string.no_internet_connection);
+        }
 
         return parentView;
     }
