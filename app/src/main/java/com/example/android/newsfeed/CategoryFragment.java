@@ -25,6 +25,7 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
     private ListView mListView;
     private NewsStoryAdapter mAdapter;
     private TextView mEmptyStateTextView;
+    private View mLoadingIndicator;
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -35,12 +36,17 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
                              Bundle savedInstanceState) {
         View parentView = inflater.inflate(R.layout.fragment_category, container, false);
 
+        // set adapter to ListView
         mListView = parentView.findViewById(R.id.list);
         mAdapter = new NewsStoryAdapter(getContext(), new ArrayList<NewsStory>());
         mListView.setAdapter(mAdapter);
 
+        // set empty state to ListView
         mEmptyStateTextView = parentView.findViewById(R.id.empty_state);
         mListView.setEmptyView(mEmptyStateTextView);
+
+        // find loading indicator in the layout
+        mLoadingIndicator = parentView.findViewById(R.id.loading_indicator);
 
         getActivity().getSupportLoaderManager().initLoader(
                 CategoryFragment.this.getArguments().getInt("id"), null, CategoryFragment.this);
@@ -57,6 +63,7 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
 
     @Override
     public void onLoadFinished(@NonNull Loader<List<NewsStory>> loader, List<NewsStory> newsStories) {
+        mLoadingIndicator.setVisibility(View.GONE);
         mEmptyStateTextView.setText(R.string.no_news);
 
         mAdapter.clear();

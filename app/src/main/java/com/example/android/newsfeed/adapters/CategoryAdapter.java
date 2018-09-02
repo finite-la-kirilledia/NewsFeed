@@ -11,11 +11,16 @@ import com.example.android.newsfeed.CategoryFragment;
 import com.example.android.newsfeed.R;
 
 public class CategoryAdapter extends FragmentPagerAdapter {
-    private static final String BUSINESS_CATEGORY_URL = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=44b9751fc1544ae3907399f66279543d";
-    private static final String BITCOIN_CATEGORY_URL = "https://newsapi.org/v2/everything?q=bitcoin&sortBy=publishedAt&apiKey=44b9751fc1544ae3907399f66279543d";
-    private static final String TECHCRUNCH_CATEGORY_URL = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=44b9751fc1544ae3907399f66279543d";
-    private static final String APPLE_CATEGORY_URL = "https://newsapi.org/v2/everything?q=apple&sortBy=popularity&apiKey=44b9751fc1544ae3907399f66279543d";
-    private static final String WS_JOURNAL_CATEGORY_URL = "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=44b9751fc1544ae3907399f66279543d";
+    private static final String BUSINESS_CATEGORY_URL =
+            "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=44b9751fc1544ae3907399f66279543d";
+    private static final String BITCOIN_CATEGORY_URL =
+            "https://newsapi.org/v2/everything?q=bitcoin&sortBy=publishedAt&apiKey=44b9751fc1544ae3907399f66279543d";
+    private static final String TECHCRUNCH_CATEGORY_URL =
+            "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=44b9751fc1544ae3907399f66279543d";
+    private static final String APPLE_CATEGORY_URL =
+            "https://newsapi.org/v2/everything?q=apple&sortBy=popularity&apiKey=44b9751fc1544ae3907399f66279543d";
+    private static final String WS_JOURNAL_CATEGORY_URL =
+            "https://newsapi.org/v2/everything?domains=wsj.com&apiKey=44b9751fc1544ae3907399f66279543d";
 
     private static final int BUSINESS_CATEGORY_LOADER_ID = 100;
     private static final int BITCOIN_CATEGORY_LOADER_ID = 200;
