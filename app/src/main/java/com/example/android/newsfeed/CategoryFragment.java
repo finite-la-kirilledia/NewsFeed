@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.android.newsfeed.adapters.NewsStoryAdapter;
 
@@ -23,6 +24,7 @@ import java.util.List;
 public class CategoryFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<NewsStory>> {
     private ListView mListView;
     private NewsStoryAdapter mAdapter;
+    private TextView mEmptyStateTextView;
 
     public CategoryFragment() {
         // Required empty public constructor
@@ -36,6 +38,9 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
         mListView = parentView.findViewById(R.id.list);
         mAdapter = new NewsStoryAdapter(getContext(), new ArrayList<NewsStory>());
         mListView.setAdapter(mAdapter);
+
+        mEmptyStateTextView = parentView.findViewById(R.id.empty_state);
+        mListView.setEmptyView(mEmptyStateTextView);
 
         getActivity().getSupportLoaderManager().initLoader(
                 CategoryFragment.this.getArguments().getInt("id"), null, CategoryFragment.this);
@@ -52,6 +57,8 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
 
     @Override
     public void onLoadFinished(@NonNull Loader<List<NewsStory>> loader, List<NewsStory> newsStories) {
+        mEmptyStateTextView.setText(R.string.no_news);
+
         mAdapter.clear();
         if (newsStories != null && !newsStories.isEmpty()) {
             mAdapter.addAll(newsStories);
